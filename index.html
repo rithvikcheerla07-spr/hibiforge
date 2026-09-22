@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="HibiForge - AI powered productivity and smart scheduling">
+
+    <title>HibiForge | Smart Productivity</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span class="straw-hat">👒</span>
+        HibiForge
+    </div>
+
+
+    <nav>
+
+        <a href="#dashboard" class="active">
+            Dashboard
+        </a>
+
+        <a href="#calendar">
+            Calendar
+        </a>
+
+        <a href="#tasks">
+            Tasks
+        </a>
+
+        <a href="#schedule">
+            Schedule
+        </a>
+
+    </nav>
+
+
+    <button
+        class="ai-button"
+        id="askAIButton"
+        type="button">
+
+        ✦ AI Assistant
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container" id="dashboard">
+
+
+    <!-- HERO -->
+
+    <section class="welcome">
+
+        <div>
+
+            <p class="small-text">
+                YOUR PRODUCTIVITY SPACE
+            </p>
+
+
+            <h1>
+
+                Build your day.<br>
+
+                <span>
+                    Forge your future.
+                </span>
+
+            </h1>
+
+
+            <p class="description">
+
+                HibiForge helps you organize your
+                tasks, manage your schedule,
+                prioritize important work and
+                stay on track.
+
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            id="addTaskButton"
+            type="button">
+
+            + Add Task
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =====================================
+         STATISTICS
+    ====================================== -->
+
+    <section class="stats">
+
+
+        <article class="stat-card">
+
+            <p>
+                Total Tasks
+            </p>
+
+            <h2 id="taskCount">
+                0
+            </h2>
+
+            <span>
+                Tasks in your workspace
+            </span>
+
+        </article>
+
+
+
+        <article class="stat-card">
+
+            <p>
+                High Priority
+            </p>
+
+            <h2 id="highPriorityCount">
+                0
+            </h2>
+
+            <span>
+                Need your attention
+            </span>
+
+        </article>
+
+
+
+        <article class="stat-card">
+
+            <p>
+                Completed
+            </p>
+
+            <h2 id="completedText">
+                0 completed
+            </h2>
+
+            <span>
+                Tasks completed
+            </span>
+
+        </article>
+                <article class="stat-card">
+
+    <p>Progress</p>
+
+    <h2 id="progressPercent">0%</h2>
+
+    <div class="progress-bar">
+        <div id="progressFill" class="progress-fill"></div>
+    </div>
+
+    <span id="progressText">
+        0 of 0 tasks completed
+    </span>
+
+</article>
+
+        <div class="tasks-card">
+
+    <div class="card-header">
+        <h2>Today's Schedule</h2>
+    </div>
+
+    <div id="todayTaskList">
+
+        <div class="empty-state">
+            <p>No tasks scheduled for today.</p>
+        </div>
+
+    </div>
+
+</div>
+    </section>
+
+
+
+    <!-- =====================================
+         DASHBOARD
+    ====================================== -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- TASK CARD -->
+
+        <div class="tasks-card" id="tasks">
+
+
+<div class="card-header">
+
+    <h2>
+        Today's Tasks
+    </h2>
+
+    <div>
+
+        <button
+            class="view-button"
+            id="clearCompletedButton"
+            type="button">
+
+            Clear Completed
+
+        </button>
+
+    </div>
+
+</div>
+
+            <input
+    type="text"
+    id="searchTask"
+    placeholder="🔍 Search tasks..."
+    class="search-box">
+
+    <select id="filterTask" class="filter-box">
+    <option value="all">All Tasks</option>
+    <option value="high">High Priority</option>
+    <option value="medium">Medium Priority</option>
+    <option value="low">Low Priority</option>
+    <option value="completed">Completed</option>
+</select>
+<select id="sortTask" class="filter-box">
+    <option value="newest">Newest First</option>
+    <option value="oldest">Oldest First</option>
+    <option value="priority">Priority</option>
+    <option value="date">Due Date</option>
+</select>
+
+            <div id="taskList">
+
+
+                <div
+                    class="empty-state"
+                    id="emptyState">
+
+
+                    <div class="empty-icon">
+                        ✦
+                    </div>
+
+
+                    <h3>
+                        No tasks yet
+                    </h3>
+
+
+                    <p>
+
+                        Add your first task and
+                        start forging your day.
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             AI ASSISTANT
+        ================================== -->
+
+        <div class="ai-card">
+
+
+            <div class="ai-title">
+
+
+                <div class="ai-icon">
+                    ✦
+                </div>
+
+
+                <div>
+
+                    <p class="small-text">
+                        HIBIFORGE AI
+                    </p>
+
+
+                    <h2>
+                        Smart Assistant
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <p>
+
+                Your AI productivity assistant
+                analyzes your tasks and suggests
+                what you should focus on next.
+
+            </p>
+
+
+            <div class="suggestion">
+
+
+                <div>
+
+                    <strong>
+                        Suggested focus
+                    </strong>
+
+
+                    <small id="aiSuggestion">
+
+                        Add some tasks to get
+                        an AI suggestion.
+
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="ai-action"
+                id="aiActionButton"
+                type="button">
+
+                ✦ Analyze My Tasks
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         FEATURES
+    ====================================== -->
+
+    <section
+        class="future-section"
+        id="calendar">
+
+
+        <!-- CALENDAR -->
+
+<div class="calendar-card" id="calendar">
+
+    <div class="calendar-header">
+
+        <button id="prevMonth">◀</button>
+
+        <h2 id="monthYear"></h2>
+
+        <button id="nextMonth">▶</button>
+
+    </div>
+
+    <div class="weekdays">
+
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+
+    </div>
+
+    <div id="calendarGrid" class="calendar-grid"></div>
+
+</div>
+
+
+
+        <!-- ALARM -->
+
+        <div class="future-card">
+
+            <span class="feature-icon">
+                ⏰
+            </span>
+
+
+            <h2>
+                Smart Alarms
+            </h2>
+
+
+            <p>
+
+                Get reminders at the right
+                time for important tasks.
+
+            </p>
+
+
+            <button
+                class="feature-button"
+                id="alarmButton"
+                type="button">
+
+                Test Alarm
+
+            </button>
+
+        </div>
+
+
+
+        <!-- UPLOAD -->
+
+        <div
+            class="future-card"
+            id="schedule">
+
+
+            <span class="feature-icon">
+                📄
+            </span>
+
+
+            <h2>
+                Schedule Upload
+            </h2>
+
+
+            <p>
+
+                Upload your schedule as
+                text, image or PDF.
+
+            </p>
+
+
+            <label class="upload-button">
+
+                Upload Schedule
+
+                <input
+                    type="file"
+                    id="scheduleUpload"
+                    accept=".pdf,.png,.jpg,.jpeg,.txt"
+                    hidden>
+
+            </label>
+
+
+            <p
+                id="fileName"
+                class="file-name">
+
+                No file selected
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     ADD TASK MODAL
+========================================= -->
+
+<div
+    class="modal-overlay"
+    id="taskModal">
+
+
+    <div class="modal">
+
+
+        <button
+            class="close-button"
+            id="closeModal"
+            type="button">
+
+            ×
+
+        </button>
+
+
+        <h2>
+            Add a Task
+        </h2>
+
+
+        <p class="modal-description">
+
+            Add a task to your HibiForge
+            productivity workspace.
+
+        </p>
+
+
+        <form id="taskForm">
+
+
+            <!-- TASK NAME -->
+
+            <label for="taskName">
+                Task Name
+            </label>
+
+
+            <input
+                type="text"
+                id="taskName"
+                placeholder="Example: Complete Java assignment"
+                required>
+
+
+
+            <!-- DATE -->
+
+            <label for="taskDate">
+                Date
+            </label>
+
+
+            <input
+                type="date"
+                id="taskDate"
+                required>
+
+
+
+            <!-- TIME -->
+
+            <label for="taskTime">
+                Time
+            </label>
+
+
+            <input
+                type="time"
+                id="taskTime"
+                required>
+
+
+
+            <!-- PRIORITY -->
+
+            <label for="taskPriority">
+                Priority
+            </label>
+
+
+            <select id="taskPriority">
+
+                <option value="high">
+                    High
+                </option>
+
+                <option
+                    value="medium"
+                    selected>
+
+                    Medium
+
+                </option>
+
+                <option value="low">
+                    Low
+                </option>
+
+            </select>
+
+
+
+            <!-- DURATION -->
+
+            <label for="taskDuration">
+                Duration
+            </label>
+
+
+            <input
+                type="text"
+                id="taskDuration"
+                placeholder="Example: 1 hour"
+                required>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-task">
+
+                Add Task
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================
+     TOAST
+========================================= -->
+
+<div
+    class="toast"
+    id="toast">
+
+    Task added successfully ✦
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>
